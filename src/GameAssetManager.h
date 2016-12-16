@@ -9,9 +9,14 @@
 #include <iostream>
 
 #include <GL/gl.h>
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "common.h"
 #include "GameAsset.h"
+#include "Camera.h"
 
 /**
  * GameAssetManager is a container for GameAssets.  It also provides utility
@@ -29,6 +34,7 @@ class GameAssetManager {
   void Draw();
 
  private:
+  Camera camera;
   GLuint CreateGLProgram(std::string &, std::string &);
   GLuint CreateGLESShader(GLenum, std::string &);
   // As this is private and we're writing to the GPU, we will use raw pointers.

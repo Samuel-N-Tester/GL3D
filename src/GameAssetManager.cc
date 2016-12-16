@@ -1,4 +1,7 @@
 #include "GameAssetManager.h"
+#include "Camera.h"
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 /**
  * Creates a GameAssetManager to load the correct shaders based on the
@@ -21,6 +24,7 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   };
 
   program_token = CreateGLProgram(vertex_shader, fragment_shader);
+  auto camera = std::make_shared<Camera>();
 }
 
 /**
@@ -54,7 +58,7 @@ GameAssetManager::GameAssetManager(GameAssetManager const&& the_manager) {
 void GameAssetManager::operator=(GameAssetManager const& the_manager) {
   // TODO: implement this
 }
-
+//sam is cool
 /**
  * Adds a GameAsset to the scene graph.
  */
@@ -66,6 +70,13 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
+
+	camera.moveX(0.5);
+
+	auto c = camera.getViewMatrix();
+	GLuint view_token = glGetUniformLocation(program_token ,"view");
+	glUniformMatrix4fv(view_token, 1, false, glm::value_ptr(c));
+
   for(auto ga: draw_list) {
     ga->Draw(program_token);
   }
