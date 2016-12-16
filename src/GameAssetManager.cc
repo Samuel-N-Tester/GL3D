@@ -71,7 +71,8 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  */
 void GameAssetManager::Draw() {
 
-	camera.moveX(0.5);
+	camera.rotateY(0.3);
+	camera.rotateX(1);
 
 	auto c = camera.getViewMatrix();
 	GLuint view_token = glGetUniformLocation(program_token ,"view");
