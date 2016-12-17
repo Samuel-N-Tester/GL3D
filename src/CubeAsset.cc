@@ -1,18 +1,19 @@
 #include "CubeAsset.h"
+#include "GameAsset.h"
 
-CubeAsset::CubeAsset() {
+CubeAsset::CubeAsset(double x, double y, double z) {
   // model coordinates, origin at centre.
   GLfloat vertex_buffer [] {
 	//front
-      -0.5, -0.5,  0.5
-    , -0.5,  0.5,  0.5
-    ,  0.5, -0.5,  0.5
-    ,  0.5,  0.5,  0.5
+      -0.5 + x, -0.5 + y,  0.5 + z
+    , -0.5 + x,  0.5 + y,  0.5 + z
+    ,  0.5 + x, -0.5 + y,  0.5 + z
+    ,  0.5 + x,  0.5 + y,  0.5 + z
 	//back
-	, -0.5, -0.5, -0.5
-    , -0.5,  0.5, -0.5
-    ,  0.5, -0.5, -0.5
-    ,  0.5,  0.5, -0.5
+	, -0.5 + x, -0.5 + y, -0.5 + z
+    , -0.5 + x,  0.5 + y, -0.5 + z
+    ,  0.5 + x, -0.5 + y, -0.5 + z
+    ,  0.5 + x,  0.5 + y, -0.5 + z
   };
 
   element_buffer_length = 36;
@@ -50,6 +51,7 @@ CubeAsset::CubeAsset() {
   glGenBuffers(1, &element_buffer_token);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer_token);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * element_buffer_length, element_buffer, GL_STATIC_DRAW);
+
 }
 
 CubeAsset::~CubeAsset() {

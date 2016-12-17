@@ -2,11 +2,14 @@
 #define GAMEWORLD_H
 
 #include <memory>
-
+#include <list>
 #include <GL/gl.h>
+#include <fstream>
+#include <iostream>
 
 #include "common.h"
 #include "GameAssetManager.h"
+#include "GameAsset.h"
 #include "CubeAsset.h"
 
 /**
@@ -28,6 +31,7 @@ class GameWorld {
    */
   void Draw();
  private:
+  std::list<std::shared_ptr<GameAsset>> levelLayout;
   std::shared_ptr<GameAssetManager> asset_manager;
 };
 #endif // GAMEWORLD_H

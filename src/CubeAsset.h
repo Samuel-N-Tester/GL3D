@@ -11,9 +11,10 @@
 
 class CubeAsset : public GameAsset {
  public:
-  CubeAsset();
+  CubeAsset(double, double, double);
   ~CubeAsset();
   virtual void Draw(GLuint);
+
 
  private:
   GLuint element_buffer_length;

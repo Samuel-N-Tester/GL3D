@@ -62,7 +62,7 @@ mat4 rotate_z(float theta)
 }
 void main() {
       gl_Position = projection(radians(45.0), 4.0/3.0, -0.1, -1000.0)
-                      * translate(0.0, 0.0, -5.0)
+                      * translate(0.0, 0.0, 0.0)
                       * view
                       * rotate_x(radians(0))
                       * rotate_y(radians(0))
