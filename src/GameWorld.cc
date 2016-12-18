@@ -1,4 +1,5 @@
 #include "GameWorld.h"
+#include "GameAsset.h"
 
 GameWorld::GameWorld(ApplicationMode mode) : asset_manager(std::make_shared<GameAssetManager>(mode)) {
 
@@ -55,8 +56,8 @@ GameWorld::GameWorld(ApplicationMode mode) : asset_manager(std::make_shared<Game
 			} else if (currentPlace == 2) {
 
 				// Make a cube in this location
-				auto cube = std::make_shared<CubeAsset>(countX - playerSpawnX,
-						-2, countZ - playerSpawnZ);
+				auto cube = std::make_shared<CubeAsset>(countX - playerSpawnX, -2, countZ - playerSpawnZ);
+				cube->rotateY(45);
 				levelLayout.push_back(cube);
 
 			} else {

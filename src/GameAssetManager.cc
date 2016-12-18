@@ -70,13 +70,16 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-	camera.rotateY(1);
+	//camera.rotateY(1);
 
-	auto c = camera.getViewMatrix();
+	auto v = camera.getViewMatrix();
 	GLuint view_token = glGetUniformLocation(program_token ,"view");
-	glUniformMatrix4fv(view_token, 1, false, glm::value_ptr(c));
+	glUniformMatrix4fv(view_token, 1, false, glm::value_ptr(v));
 
   for(auto ga: draw_list) {
+	auto m = ga->getModelMatrix();
+	GLuint model_token = glGetUniformLocation(program_token ,"model");
+	glUniformMatrix4fv(model_token, 1, false, glm::value_ptr(m));
     ga->Draw(program_token);
   }
 }
