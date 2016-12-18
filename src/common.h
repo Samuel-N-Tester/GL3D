@@ -9,6 +9,8 @@
  * 2. Rotate -- load the correct shader to rotate a simple asset.
  * 3. Scale -- load the correct shader to scale a simple asset.
  */
-enum ApplicationMode {TRANSFORM, ROTATE, SCALE};
+enum ApplicationMode {
+	TRANSFORM, ROTATE, SCALE
+};
 
-#endif
+#endif // COMMON_H

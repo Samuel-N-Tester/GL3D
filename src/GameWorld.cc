@@ -1,7 +1,7 @@
 #include "GameWorld.h"
-#include "GameAsset.h"
 
-GameWorld::GameWorld(ApplicationMode mode) : asset_manager(std::make_shared<GameAssetManager>(mode)) {
+GameWorld::GameWorld(ApplicationMode mode) :
+		asset_manager(std::make_shared<GameAssetManager>(mode)) {
 
 	std::vector<int> worldObjectPositions;
 
@@ -22,7 +22,6 @@ GameWorld::GameWorld(ApplicationMode mode) : asset_manager(std::make_shared<Game
 	worldFile >> mapWidth;
 	worldFile >> mapDepth;
 
-	std::cout << mapDepth << std::endl;
 
 	// Find the player, if there is more then one it uses the
 	// one closest to the bottom right (in reading order).
@@ -41,39 +40,42 @@ GameWorld::GameWorld(ApplicationMode mode) : asset_manager(std::make_shared<Game
 			}
 		}
 	}
+
 	// Add rotations for X axis
 	for (int countZ = 0; countZ < mapDepth; countZ++) {
 
-			for (int countX = 0; countX < mapWidth; countX++) {
+		for (int countX = 0; countX < mapWidth; countX++) {
 
-				int rotationValueX;
-				worldFile >> rotationValueX;
-				worldObjectRotationsX.push_back(rotationValueX);
+			int rotationValueX;
+			worldFile >> rotationValueX;
+			worldObjectRotationsX.push_back(rotationValueX);
 
-			}
 		}
+	}
+
 	// Add rotations for Y axis
 	for (int countZ = 0; countZ < mapDepth; countZ++) {
 
-				for (int countX = 0; countX < mapWidth; countX++) {
+		for (int countX = 0; countX < mapWidth; countX++) {
 
-					int rotationValueY;
-					worldFile >> rotationValueY;
-					worldObjectRotationsY.push_back(rotationValueY);
+			int rotationValueY;
+			worldFile >> rotationValueY;
+			worldObjectRotationsY.push_back(rotationValueY);
 
-				}
-			}
+		}
+	}
+
 	// Add rotations for Z axis
 	for (int countZ = 0; countZ < mapDepth; countZ++) {
 
-				for (int countX = 0; countX < mapWidth; countX++) {
+		for (int countX = 0; countX < mapWidth; countX++) {
 
-					int rotationValueZ;
-					worldFile >> rotationValueZ;
-					worldObjectRotationsZ.push_back(rotationValueZ);
+			int rotationValueZ;
+			worldFile >> rotationValueZ;
+			worldObjectRotationsZ.push_back(rotationValueZ);
 
-				}
-			}
+		}
+	}
 
 	worldFile.close();
 
@@ -87,24 +89,27 @@ GameWorld::GameWorld(ApplicationMode mode) : asset_manager(std::make_shared<Game
 	for (int countZ = 0; countZ < mapDepth; countZ++) {
 		for (int countX = 0; countX < mapWidth; countX++) {
 
-			int currentPlace = worldObjectPositions[(countZ * mapDepth) + countX];
+			int currentPlace =
+					worldObjectPositions[(countZ * mapDepth) + countX];
 
 			if (currentPlace == 0 || currentPlace == 1) {
 				// Do nothing, its empty space or a player.
 
 			} else if (currentPlace == 2) {
 
-				auto cube = std::make_shared<CubeAsset>(countX - playerSpawnX, 0, countZ - playerSpawnZ);
+				auto cube = std::make_shared<CubeAsset>(countX - playerSpawnX,0, countZ - playerSpawnZ);
+
+				// Rotate the cube to the correct start orientation
 				cube->rotateX(worldObjectRotationsX[(countZ * mapDepth) + countX]);
 				cube->rotateY(worldObjectRotationsY[(countZ * mapDepth) + countX]);
 				cube->rotateZ(worldObjectRotationsZ[(countZ * mapDepth) + countX]);
+
 				levelLayout.push_back(cube);
 
 			} else {
 
 				// Unknown asset type default as empty space and print error.
-				std::cout << "Unknown asset type:   " << currentPlace
-						<< std::endl;
+				std::cout << "Unknown asset type:   " << currentPlace << std::endl;
 			}
 		}
 	}

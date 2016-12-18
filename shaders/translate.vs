@@ -22,7 +22,6 @@ mat4 projection(
            );
 }
 
-
 void main() {
       gl_Position =     projection(radians(45.0), 4.0/3.0, -0.1, -1000.0)
       				  * view

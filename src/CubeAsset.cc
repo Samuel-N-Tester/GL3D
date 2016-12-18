@@ -1,5 +1,4 @@
 #include "CubeAsset.h"
-#include "GameAsset.h"
 
 CubeAsset::CubeAsset(double x, double y, double z) {
   // model coordinates, origin at centre.
@@ -39,7 +38,6 @@ CubeAsset::CubeAsset(double x, double y, double z) {
   };
 
   // Transfer buffers to the GPU
-  //
 
   // create buffer
   glGenBuffers(1, &vertex_buffer_token);
@@ -52,6 +50,7 @@ CubeAsset::CubeAsset(double x, double y, double z) {
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer_token);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * element_buffer_length, element_buffer, GL_STATIC_DRAW);
 
+  // Move it to Start Position
   translate(x, y, z);
 }
 
@@ -127,5 +126,5 @@ void CubeAsset::Draw(GLuint program_token) {
 
   checkGLError();
 
-  glDisableVertexAttribArray(position_attrib);
+	glDisableVertexAttribArray(position_attrib);
 }

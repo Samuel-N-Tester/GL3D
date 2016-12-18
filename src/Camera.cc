@@ -16,25 +16,24 @@ Camera::~Camera() {
 	// TODO Auto-generated destructor stub
 }
 
-glm::mat4 Camera::getViewMatrix(){
+glm::mat4 Camera::getViewMatrix() {
 	return view;
 }
 
-void Camera::moveX(double speedPerSecond){
-	view[3][0] = view[3][0] + (speedPerSecond/60);
+void Camera::translate(double x, double y, double z) {
+
+	glm::mat4 translate;
+
+	translate[3][0] = x;
+	translate[3][1] = y;
+	translate[3][2] = z;
+
+	view *= translate;
 }
 
-void Camera::moveY(double speedPerSecond){
-	view[3][0] = view[3][0] + (speedPerSecond/60);
-}
+void Camera::rotateX(double degreePerSecond) {
 
-void Camera::moveZ(double speedPerSecond){
-	view[3][0] = view[3][0] + (speedPerSecond/60);
-}
-
-void Camera::rotateX(double degreePerSecond){
-
-	degreePerSecond = degreePerSecond/60;
+	degreePerSecond = degreePerSecond / 60;
 
 	glm::mat4 xTranslate;
 
@@ -46,9 +45,9 @@ void Camera::rotateX(double degreePerSecond){
 	view *= xTranslate;
 }
 
-void Camera::rotateY(double degreePerSecond){
+void Camera::rotateY(double degreePerSecond) {
 
-	degreePerSecond = degreePerSecond/60;
+	degreePerSecond = degreePerSecond / 60;
 
 	glm::mat4 yTranslate;
 
