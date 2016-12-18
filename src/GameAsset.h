@@ -12,12 +12,9 @@ class GameAsset {
 
   void translate(double, double, double);
 
-  void moveX(double);
-  void moveY(double);
-  void moveZ(double);
-
   void rotateX(double);
   void rotateY(double);
+  void rotateZ(double);
 
  protected:
   glm::mat4 model;

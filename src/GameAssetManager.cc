@@ -70,7 +70,7 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-	//camera.rotateY(1);
+	//camera.rotateY(0.1);
 
 	auto v = camera.getViewMatrix();
 	GLuint view_token = glGetUniformLocation(program_token ,"view");
