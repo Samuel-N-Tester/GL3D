@@ -81,16 +81,14 @@ GameWorld::GameWorld(ApplicationMode mode) :
 
 	// Report if there are multiple cameras.
 	if (playerCount > 1) {
-		std::cout << "WARNING: multiple cameras detected, amount:   "
-				<< playerCount << std::endl;
+		std::cout << "WARNING: multiple cameras detected, amount:   " << playerCount << std::endl;
 	}
 
 	// Read position of cubes and place them relative to the player.
 	for (int countZ = 0; countZ < mapDepth; countZ++) {
 		for (int countX = 0; countX < mapWidth; countX++) {
 
-			int currentPlace =
-					worldObjectPositions[(countZ * mapDepth) + countX];
+			int currentPlace = worldObjectPositions[(countZ * mapWidth) + countX];
 
 			if (currentPlace == 0 || currentPlace == 1) {
 				// Do nothing, its empty space or a player.
@@ -100,16 +98,16 @@ GameWorld::GameWorld(ApplicationMode mode) :
 				auto cube = std::make_shared<CubeAsset>(countX - playerSpawnX,0, countZ - playerSpawnZ);
 
 				// Rotate the cube to the correct start orientation
-				cube->rotateX(worldObjectRotationsX[(countZ * mapDepth) + countX]);
-				cube->rotateY(worldObjectRotationsY[(countZ * mapDepth) + countX]);
-				cube->rotateZ(worldObjectRotationsZ[(countZ * mapDepth) + countX]);
+				cube->rotateX(worldObjectRotationsX[(countZ * mapWidth) + countX]);
+				cube->rotateY(worldObjectRotationsY[(countZ * mapWidth) + countX]);
+				cube->rotateZ(worldObjectRotationsZ[(countZ * mapWidth) + countX]);
 
 				levelLayout.push_back(cube);
 
 			} else {
 
 				// Unknown asset type default as empty space and print error.
-				std::cout << "Unknown asset type:   " << currentPlace << std::endl;
+				std::cout << "Unknown asset type:   " << currentPlace << "    " << (countZ * mapDepth) + countX << std::endl;
 			}
 		}
 	}
