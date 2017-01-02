@@ -28,5 +28,5 @@ void main() {
                       * model
                       * vec4(position, 1.0f);
                       
-      frag_color = vec3(1.0, 1.0, 1.0); // white
+      frag_color = vec3(0.6, 1.0, 0.6); // green
 }

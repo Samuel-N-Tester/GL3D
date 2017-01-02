@@ -31,7 +31,10 @@ public:
 	void rotateY(double);
 
 private:
-	glm::mat4 view;
+	double yaw;
+	glm::mat4 viewTranslate;
+	glm::mat4 viewRotateY;
+	glm::mat4 viewRotateX;
 };
 
 #endif // SRC_CAMERA_H_

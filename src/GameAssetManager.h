@@ -29,6 +29,8 @@ public:
 	virtual ~GameAssetManager();
 	GameAssetManager(GameAssetManager const&); // copy constructor
 	GameAssetManager(GameAssetManager const&&); // move constructor
+	void moveCamera(double, double, double);
+	void rotateCamera(char, double);
 	void operator=(GameAssetManager const&); // assignment
 	void AddAsset(std::shared_ptr<GameAsset>);
 	void Draw();

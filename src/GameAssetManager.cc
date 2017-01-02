@@ -48,6 +48,24 @@ GameAssetManager::GameAssetManager(GameAssetManager const&& the_manager) {
 	// TODO: implement this
 }
 
+void GameAssetManager::moveCamera(double x, double y, double z) {
+	camera.translate(x, y, z);
+}
+
+void GameAssetManager::rotateCamera(char type, double amount) {
+	switch (type) {
+	case 'x':
+		camera.rotateX(amount);
+		break;
+	case 'y':
+		camera.rotateY(amount);
+		break;
+	default:
+		std::cout << "ERROR: unknown rotate type" << std::endl;
+		break;
+	}
+}
+
 /**
  * Unimplemented assisgnment operator -- violates the expected semantics for
  * assignment in C++11.
@@ -55,7 +73,7 @@ GameAssetManager::GameAssetManager(GameAssetManager const&& the_manager) {
 void GameAssetManager::operator=(GameAssetManager const& the_manager) {
 	// TODO: implement this
 }
-//sam is cool
+
 /**
  * Adds a GameAsset to the scene graph.
  */
@@ -67,9 +85,8 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-	// use these methods to test camera movement
-	// camera.translate(0, 0, 0.01);
-	 camera.rotateY(2);
+
+	//camera.rotateY(5);
 
 	auto v = camera.getViewMatrix();
 	GLuint view_token = glGetUniformLocation(program_token, "view");
@@ -128,7 +145,8 @@ GLuint GameAssetManager::CreateGLESShader(GLenum type, std::string & shader) {
 		return 0;
 
 	shader_token = glCreateShader(type);
-	glShaderSource(shader_token, 1, (const GLchar**) &source.first, &source.second);
+	glShaderSource(shader_token, 1, (const GLchar**) &source.first,
+			&source.second);
 	glCompileShader(shader_token);
 	delete (source.first);
 
@@ -142,7 +160,8 @@ GLuint GameAssetManager::CreateGLESShader(GLenum type, std::string & shader) {
 		glGetShaderInfoLog(shader_token, maxLength, &maxLength, &errorLog[0]);
 
 		//Provide the infolog in whatever manor you deem best.
-		std::cerr << "Failed to compile " << shader << " with error code " << shader_ok << std::endl;
+		std::cerr << "Failed to compile " << shader << " with error code "
+				<< shader_ok << std::endl;
 		for (auto c : errorLog) {
 			std::cerr << c;
 		}

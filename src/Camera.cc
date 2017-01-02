@@ -17,45 +17,46 @@ Camera::~Camera() {
 }
 
 glm::mat4 Camera::getViewMatrix() {
-	return view;
+	return viewRotateX * viewRotateY * viewTranslate;
 }
 
 void Camera::translate(double x, double y, double z) {
 
 	glm::mat4 translate;
 
-	translate[3][0] = x;
-	translate[3][1] = y;
-	translate[3][2] = z;
+	translate[3][0] -= viewRotateY[2][0]*z;
+	translate[3][1] += y;
+	translate[3][2] += viewRotateY[0][0]*z;
 
-	view *= translate;
+	viewTranslate *= translate;
 }
 
-void Camera::rotateX(double degreePerSecond) {
+void Camera::rotateX(double degree) {
 
-	degreePerSecond = degreePerSecond / 60;
+	degree = degree / 600;
 
 	glm::mat4 xTranslate;
 
-	xTranslate[1][1] = cos(degreePerSecond);
-	xTranslate[1][2] = sin(degreePerSecond);
-	xTranslate[2][1] = -sin(degreePerSecond);
-	xTranslate[2][2] = cos(degreePerSecond);
+	xTranslate[1][1] = cos(degree);
+	xTranslate[1][2] = sin(degree);
+	xTranslate[2][1] = -sin(degree);
+	xTranslate[2][2] = cos(degree);
 
-	view *= xTranslate;
+	viewRotateX *= xTranslate;
 }
 
-void Camera::rotateY(double degreePerSecond) {
+void Camera::rotateY(double degree) {
 
-	degreePerSecond = degreePerSecond / 60;
+	degree = degree / 600;
 
 	glm::mat4 yTranslate;
 
-	yTranslate[0][0] = cos(degreePerSecond);
-	yTranslate[0][2] = -sin(degreePerSecond);
-	yTranslate[2][0] = sin(degreePerSecond);
-	yTranslate[2][2] = cos(degreePerSecond);
+	yTranslate[0][0] = cos(degree);
+	yTranslate[0][2] = -sin(degree);
+	yTranslate[2][0] = sin(degree);
+	yTranslate[2][2] = cos(degree);
 
-	view *= yTranslate;
+	viewRotateY *= yTranslate;
+
 
 }

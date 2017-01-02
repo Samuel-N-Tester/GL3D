@@ -25,13 +25,13 @@ class GameWorld {
    * is preferable (in this case) to having some kind of global state.
    */
   GameWorld(ApplicationMode);
-
+  std::shared_ptr<GameAssetManager> asset_manager;
   /**
    * Calling Draw() will draw the entire world.
    */
   void Draw();
  private:
   std::list<std::shared_ptr<GameAsset>> levelLayout;
-  std::shared_ptr<GameAssetManager> asset_manager;
+
 };
 #endif // GAMEWORLD_H
