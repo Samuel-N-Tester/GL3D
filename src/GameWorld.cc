@@ -3,7 +3,7 @@
 GameWorld::GameWorld(ApplicationMode mode) :
 		asset_manager(std::make_shared<GameAssetManager>(mode)) {
 
-	std::string world = "world1";
+	std::string world = "world2";
 
 	std::vector<int> layerList;
 

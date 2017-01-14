@@ -172,13 +172,13 @@ int main(int argc, char ** argv) {
 				manager->moveCamera(0, 0, 0.1);
 				break;
 			case SDLK_s:
-				manager->moveCamera(0, 0, -1);
+				manager->moveCamera(0, 0, -0.1);
 				break;
 			case SDLK_d:
-				manager->moveCamera(-1, 0, 0);
+				manager->moveCamera(-0.1, 0, 0);
 				break;
 			case SDLK_a:
-				manager->moveCamera(1, 0, 0);
+				manager->moveCamera(0.1, 0, 0);
 				break;
 			default:
 				break;

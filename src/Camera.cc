@@ -24,9 +24,17 @@ void Camera::translate(double x, double y, double z) {
 
 	glm::mat4 translate;
 
-	translate[3][0] -= viewRotateY[2][0]*z;
-	translate[3][1] += y;
-	translate[3][2] += viewRotateY[0][0]*z;
+	if (z != 0) {
+		translate[3][0] -= viewRotateY[2][0]*z;
+		translate[3][1] += y;
+		translate[3][2] += viewRotateY[0][0]*z;
+	}
+
+	if (x != 0) {
+			translate[3][0] += viewRotateY[0][0]*x;
+			translate[3][1] += 0;
+			translate[3][2] += viewRotateY[2][0]*x;
+	}
 
 	viewTranslate *= translate;
 }
