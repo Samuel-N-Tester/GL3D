@@ -137,7 +137,7 @@ ApplicationMode ParseOptions(int argc, char ** argv) {
 }
 
 int main(int argc, char ** argv) {
-	Uint32 delay = 1000 / 40; // in milliseconds
+	Uint32 delay = 1000 / 30; // in milliseconds
 
 	auto mode = ParseOptions(argc, argv);
 	auto window = InitWorld();
@@ -180,6 +180,12 @@ int main(int argc, char ** argv) {
 			case SDLK_a:
 				manager->moveCamera(0.1, 0, 0);
 				break;
+			case SDLK_z:
+				manager->rotateCamera('y', 1.0);
+				break;
+			case SDLK_x:
+							manager->rotateCamera('y', -1.0);
+							break;
 			default:
 				break;
 			}

@@ -67,7 +67,7 @@ void GameAssetManager::rotateCamera(char type, double amount) {
 }
 
 /**
- * Unimplemented assisgnment operator -- violates the expected semantics for
+ * Unimplemented assignment operator -- violates the expected semantics for
  * assignment in C++11.
  */
 void GameAssetManager::operator=(GameAssetManager const& the_manager) {
