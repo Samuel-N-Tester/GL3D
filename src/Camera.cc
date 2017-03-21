@@ -39,7 +39,7 @@ void Camera::translate(double x, double y, double z) {
 	viewTranslate *= translate;
 }
 
-void Camera::rotateX(double degree) {
+void Camera::rotateX(double degree) {//
 
 	degree = degree / 600;
 	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::mediump_float(degree), glm::vec3(1, 0, 0));
