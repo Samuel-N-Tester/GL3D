@@ -55,4 +55,4 @@ void Camera::rotateY(double degree) {
 	viewRotateY *= rotate;
 
 
-}
+}//lll
