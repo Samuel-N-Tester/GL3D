@@ -42,29 +42,17 @@ void Camera::translate(double x, double y, double z) {
 void Camera::rotateX(double degree) {
 
 	degree = degree / 600;
+	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::mediump_float(degree), glm::vec3(1, 0, 0));
 
-	glm::mat4 xTranslate;
-
-	xTranslate[1][1] = cos(degree);
-	xTranslate[1][2] = sin(degree);
-	xTranslate[2][1] = -sin(degree);
-	xTranslate[2][2] = cos(degree);
-
-	viewRotateX *= xTranslate;
+	viewRotateX *= rotate;
 }
 
 void Camera::rotateY(double degree) {
 
 	degree = degree / 600;
+	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::mediump_float(degree), glm::vec3(0, 1, 0));
 
-	glm::mat4 yTranslate;
-
-	yTranslate[0][0] = cos(degree);
-	yTranslate[0][2] = -sin(degree);
-	yTranslate[2][0] = sin(degree);
-	yTranslate[2][2] = cos(degree);
-
-	viewRotateY *= yTranslate;
+	viewRotateY *= rotate;
 
 
 }
