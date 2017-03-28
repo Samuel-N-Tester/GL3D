@@ -34,4 +34,4 @@ class GameWorld {
   std::list<std::shared_ptr<GameAsset>> levelLayout;
 
 };
-#endif // GAMEWORLD_H hey
+#endif // GAMEWORLD_H
