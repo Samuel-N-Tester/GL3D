@@ -40,8 +40,6 @@ bool BoundingBox::CollidesWithBoxBox(glm::vec3 position, glm::vec3 otherPosition
 		}
 	}
 
-	std::cout << "COLLISON - box box" << std::endl;
-
 	return collided;
 }
 
@@ -58,10 +56,10 @@ bool BoundingBox::CollidesWithBoxCircle(glm::vec3 position, glm::vec3 otherPosit
 	// find the closest point on the cube to the sphere
 	for (int i = 0; i < 3; i++) {
 
-		if (position[i] - halfVecs[i] > otherRadius) {
+		if (position[i] - halfVecs[i] > otherPosition[i]) {
 			closestPoint[i] = position[i] - halfVecs[i];
 
-		} else if (position[i] + halfVecs[i] < otherRadius) {
+		} else if (position[i] + halfVecs[i] < otherPosition[i]) {
 			closestPoint[i] = position[i] + halfVecs[i];
 
 		} else {
@@ -75,18 +73,17 @@ bool BoundingBox::CollidesWithBoxCircle(glm::vec3 position, glm::vec3 otherPosit
 		XYZDistance[i] = closestPoint[i] - otherPosition[i];
 		XYZDistance[i] = pow(XYZDistance[i], 2);
 	}
+
 	for (int i = 0; i < 3; i++){
 		distance += XYZDistance[i];
 	}
-	distance = sqrt(distance);
 
+	distance = sqrt(distance);
 
 
 	if (distance < otherRadius){
 		collided = true;
 	}
-
-	std::cout << "COLLISON box circle" << std::endl;
 
 	return collided;
 }
@@ -95,7 +92,6 @@ bool BoundingBox::CollidesWithBoxCircle(glm::vec3 position, glm::vec3 otherPosit
 
 bool BoundingBox::CollidesWithCircleBox(glm::vec3 position, glm::vec3 otherPosition, glm::vec3 otherHalfVecs) {
 	bool collided = CollidesWithBoxCircle(otherPosition, position, this->GetRadius());
-	std::cout << "circle box actually" << std::endl;
 	return collided;
 }
 
@@ -115,8 +111,6 @@ bool BoundingBox::CollidesWithCircleCircle(glm::vec3 position, glm::vec3 otherPo
 			distance += XYZDistance[i];
 		}
 		distance = sqrt(distance);
-
-
 
 		if (distance < otherRadius + this->GetRadius()){
 			collided = true;
