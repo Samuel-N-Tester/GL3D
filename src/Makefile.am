@@ -1,11 +1,11 @@
-EXTRA_DIST = GameWorld.h GameAssetManager.h GameAsset.h CubeAsset.h Camera.h
+EXTRA_DIST = GameWorld.h GameAssetManager.h GameAsset.h CubeAsset.h Camera.h BoundingBox.h LiveTest.h
 
 bin_PROGRAMS = shaderexample
 shaderexample_SOURCES = main.cc
 shaderexample_LDADD = libpygame.la
 
 lib_LTLIBRARIES = libpygame.la
-libpygame_la_SOURCES = GameWorld.cc GameAssetManager.cc CubeAsset.cc GameAsset.cc Camera.cc
+libpygame_la_SOURCES = GameWorld.cc GameAssetManager.cc CubeAsset.cc GameAsset.cc Camera.cc BoundingBox.cc LiveTest.cc
 libpygame_la_LDFLAGS = -version-info 0:0:0
 
 AM_CPPFLAGS = -DGL_GLEXT_PROTOTYPES -DGL3_PROTOTYPES

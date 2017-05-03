@@ -1,4 +1,5 @@
 #include <glm/glm.hpp>
+#include <iostream>
 
 /*
  * BoundingBox.h
@@ -15,13 +16,18 @@ private:
 	glm::vec3 halfX = glm::vec3 (0.5, 0,   0);
 	glm::vec3 halfY = glm::vec3 (0,   0.5, 0);
 	glm::vec3 halfZ = glm::vec3 (0,   0,   0.5);
+	double radius = 0.5;
 
 public:
 	BoundingBox();
 	virtual ~BoundingBox();
 
 	glm::vec3 GetSizeVec();
-	bool CollidesWith(glm::vec3, glm::vec3);
+	bool CollidesWithBoxBox(glm::vec3, glm::vec3, glm::vec3);
+	bool CollidesWithBoxCircle(glm::vec3, glm::vec3, double);
+	bool CollidesWithCircleBox(glm::vec3, glm::vec3, glm::vec3);
+	bool CollidesWithCircleCircle(glm::vec3, glm::vec3, double);
+	double GetRadius();
 };
 
 #endif /* SRC_BOUNDINGBOX_H_ */

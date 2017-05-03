@@ -2,6 +2,7 @@
 #define GAMEASSET_H
 
 #include <GL/gl.h>
+#include <BoundingBox.h>
 
 #include <iostream>
 
@@ -18,6 +19,7 @@ public:
 
 protected:
 	glm::mat4 model;
+	BoundingBox boundingBox;
 
 };
 
