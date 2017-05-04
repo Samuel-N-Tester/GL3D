@@ -15,6 +15,8 @@ public:
 	LiveTest();
 	virtual ~LiveTest();
 	int run();
+	int echo();
+	int add(int, int);
 };
 
 #endif /* SRC_LiveTEST_H_ */

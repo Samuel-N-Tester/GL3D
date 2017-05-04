@@ -139,3 +139,8 @@ int LiveTest::run(){
 		std::cout << "TEST FAILED" << std::endl;
 	}
 }
+
+
+int LiveTest::add(int a, int b){
+	return a+b;
+}

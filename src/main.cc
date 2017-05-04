@@ -11,6 +11,7 @@
 
 #include "common.h"
 #include "GameWorld.h"
+#include "LiveTest.h"
 
 /*
  * SDL timers run in separate threads.  In the timer thread
@@ -104,6 +105,7 @@ std::shared_ptr<SDL_Window> InitWorld() {
 	glDepthFunc(GL_LESS);
 
 	window.reset(_window, SDL_DestroyWindow);
+
 	return window;
 }
 
@@ -136,7 +138,9 @@ ApplicationMode ParseOptions(int argc, char ** argv) {
 	return TRANSFORM;
 }
 
+
 int main(int argc, char ** argv) {
+
 	Uint32 delay = 1000 / 30; // in milliseconds
 
 	auto mode = ParseOptions(argc, argv);
@@ -145,6 +149,7 @@ int main(int argc, char ** argv) {
 	if (!window) {
 		SDL_Quit();
 	}
+
 
 	// Call the function "tick" every delay milliseconds
 	SDL_AddTimer(delay, tick, NULL);
@@ -180,19 +185,20 @@ int main(int argc, char ** argv) {
 			case SDLK_a:
 				manager->moveCamera(0.1, 0, 0);
 				break;
-			case SDLK_z:
-				manager->rotateCamera('y', 1.0);
+			case SDLK_q:
+				manager->rotateCamera('y', -5.0);
 				break;
-			case SDLK_x:
-							manager->rotateCamera('y', -1.0);
-							break;
-			default:
+			case SDLK_e:
+				manager->rotateCamera('y', 5.0);
 				break;
+			case SDLK_t:{
+				LiveTest test;
+				test.run();
 			}
-			break;
-
+				break;
 		default:
 			break;
+			}
 		}
 	}
 }
